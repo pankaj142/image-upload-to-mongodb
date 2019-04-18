@@ -11,8 +11,8 @@ const app = express();
 
 app.use(bodyParser.json());
 
-const MONGODB_URI = "mongodb://localhost:27017/BillMe";
-// const MONGODB_URI = "mongodb://localhost:27017/BillMe";
+const MONGODB_URI =
+  process.env.MONGODB_URI || "mongodb://localhost:27017/BillMe";
 
 //multer image upload
 const conn = mongoose.createConnection(MONGODB_URI, { useNewUrlParser: true });
@@ -72,6 +72,9 @@ app.get("/image/:filename", (req, res) => {
   });
 });
 
+app.get("/", (req, res) => {
+  res.send("image upload");
+});
 app.listen(PORT, () => {
   console.log("Server is UP.");
 });
