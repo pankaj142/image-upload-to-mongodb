@@ -12,8 +12,7 @@ const app = express();
 app.use(bodyParser.json());
 
 const MONGODB_URI =
-  "mongodb+srv://dbuser142:dbuser142@mflix-s7ygf.mongodb.net/billme?retryWrites=true" ||
-  "mongodb://localhost:27017/BillMe";
+  process.env.MONGODB_URI || "mongodb://localhost:27017/BillMe";
 
 //multer image upload
 const conn = mongoose.createConnection(MONGODB_URI, { useNewUrlParser: true });
